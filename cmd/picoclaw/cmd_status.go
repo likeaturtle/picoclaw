@@ -5,7 +5,9 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/sipeed/picoclaw/pkg/auth"
@@ -155,7 +157,8 @@ func statusCmd() {
 		channelStatus(cfg.Channels.OneBot.Enabled, "OneBot")
 		channelStatus(cfg.Channels.MaixCam.Enabled, "MaixCam")
 		if cfg.Channels.WebSocket.Enabled {
-			addr := fmt.Sprintf("http://%s:%d", cfg.Channels.WebSocket.Host, cfg.Channels.WebSocket.Port)
+			hostPort := net.JoinHostPort(cfg.Channels.WebSocket.Host, strconv.Itoa(cfg.Channels.WebSocket.Port))
+			addr := "http://" + hostPort
 			channelStatus(true, "WebSocket", addr)
 		} else {
 			channelStatus(false, "WebSocket")
