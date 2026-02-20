@@ -113,6 +113,12 @@
       "reconnect_interval": 5,
       "group_trigger_prefix": [],
       "allow_from": []
+    },
+    "websocket": {
+      "enabled": false,
+      "host": "0.0.0.0",
+      "port": 8080,
+      "allow_from": []
     }
   },
   "providers": {

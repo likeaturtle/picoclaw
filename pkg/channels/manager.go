@@ -12,6 +12,7 @@ import (
 	"sync"
 
 	"github.com/sipeed/picoclaw/pkg/bus"
+	"github.com/sipeed/picoclaw/pkg/channels/websocket"
 	"github.com/sipeed/picoclaw/pkg/config"
 	"github.com/sipeed/picoclaw/pkg/constants"
 	"github.com/sipeed/picoclaw/pkg/logger"
@@ -173,6 +174,19 @@ func (m *Manager) initChannels() error {
 		} else {
 			m.channels["onebot"] = onebot
 			logger.InfoC("channels", "OneBot channel enabled successfully")
+		}
+	}
+
+	if m.config.Channels.WebSocket.Enabled {
+		logger.DebugC("channels", "Attempting to initialize WebSocket channel")
+		ws, err := websocket.NewChannel(m.config.Channels.WebSocket, m.bus)
+		if err != nil {
+			logger.ErrorCF("channels", "Failed to initialize WebSocket channel", map[string]interface{}{
+				"error": err.Error(),
+			})
+		} else {
+			m.channels["websocket"] = ws
+			logger.InfoC("channels", "WebSocket channel enabled successfully")
 		}
 	}
 
