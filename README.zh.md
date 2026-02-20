@@ -273,7 +273,7 @@ picoclaw agent -m "2+2 等于几？"
 
 ## 💬 聊天应用集成 (Chat Apps)
 
-通过 Telegram, Discord, 钉钉或 WebSocket 与您的 PicoClaw 对话。
+通过 Telegram, Discord, 钉钉、企业微信或 WebSocket 与您的 PicoClaw 对话。
 
 | 渠道 | 设置难度 |
 | --- | --- |
@@ -281,6 +281,7 @@ picoclaw agent -m "2+2 等于几？"
 | **Discord** | 简单 (bot token + intents) |
 | **QQ** | 简单 (AppID + AppSecret) |
 | **钉钉 (DingTalk)** | 中等 (app credentials) |
+| **企业微信 (WeCom)** | 中等 (企业ID + Webhook配置) |
 | **WebSocket** | 简单 (局域网 Web 聊天) |
 
 <details>
@@ -440,6 +441,92 @@ picoclaw gateway
 </details>
 
 <details>
+<summary><b>企业微信 (WeCom)</b></summary>
+
+PicoClaw 支持两种企业微信集成方式：
+
+**选项1: 智能机器人 (WeCom Bot)** - 设置更简单，支持群聊
+**选项2: 自建应用 (WeCom App)** - 功能更丰富，支持主动推送消息
+
+详见 [企业微信自建应用配置指南](docs/wecom-app-configuration.md)。
+
+**快速设置 - 智能机器人：**
+
+**1. 创建机器人**
+
+* 前往企业微信管理后台 → 群聊 → 添加群机器人
+* 复制 Webhook URL (格式: `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx`)
+
+**2. 配置**
+
+```json
+{
+  "channels": {
+    "wecom": {
+      "enabled": true,
+      "token": "YOUR_TOKEN",
+      "encoding_aes_key": "YOUR_ENCODING_AES_KEY",
+      "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY",
+      "webhook_host": "0.0.0.0",
+      "webhook_port": 18793,
+      "webhook_path": "/webhook/wecom",
+      "allow_from": []
+    }
+  }
+}
+```
+
+**快速设置 - 自建应用：**
+
+**1. 创建应用**
+
+* 前往企业微信管理后台 → 应用管理 → 创建应用
+* 复制 **AgentId** 和 **Secret**
+* 前往"我的企业"页面，复制 **CorpID**
+
+**2. 配置接收消息**
+
+* 在应用详情页，点击"接收消息" → "设置API"
+* 设置 URL 为 `http://your-server:18792/webhook/wecom-app`
+* 生成 **Token** 和 **EncodingAESKey**
+
+**3. 配置**
+
+```json
+{
+  "channels": {
+    "wecom_app": {
+      "enabled": true,
+      "corp_id": "wwxxxxxxxxxxxxxxxx",
+      "corp_secret": "YOUR_CORP_SECRET",
+      "agent_id": 1000002,
+      "token": "YOUR_TOKEN",
+      "encoding_aes_key": "YOUR_ENCODING_AES_KEY",
+      "webhook_host": "0.0.0.0",
+      "webhook_port": 18792,
+      "webhook_path": "/webhook/wecom-app",
+      "allow_from": []
+    }
+  }
+}
+```
+
+**4. 运行**
+
+```bash
+picoclaw gateway
+
+```
+
+> **注意**: 自建应用需要开放 18792 端口用于接收 Webhook 回调。生产环境建议使用反向代理配置 HTTPS。
+
+</details>
+
+
+
+
+
+<details>
 <summary><b>WebSocket</b> (局域网 Web 聊天)</summary>
 
 **1. 配置**
@@ -491,6 +578,8 @@ picoclaw gateway
 > **Docker Compose**：在 `picoclaw-gateway` 服务中添加 `ports: ["8080:8080"]` 以暴露 WebSocket 端口。
 
 </details>
+
+
 
 ## <img src="assets/clawdchat-icon.png" width="24" height="24" alt="ClawdChat"> 加入 Agent 社交网络
 
