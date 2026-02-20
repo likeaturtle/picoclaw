@@ -27,11 +27,11 @@ var logoImage []byte
 
 // Channel implements the Channel interface for WebSocket connections
 type Channel struct {
-	config     config.WebSocketConfig
-	bus        *bus.MessageBus
-	running    bool
-	allowList  []string
-	server     *http.Server
+	config    config.WebSocketConfig
+	bus       *bus.MessageBus
+	running   bool
+	allowList []string
+	server    *http.Server
 	upgrader  websocket.Upgrader
 	clients   sync.Map // map[string]*websocket.Conn
 	clientsMu sync.RWMutex

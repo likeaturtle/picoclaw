@@ -215,7 +215,7 @@ func (m *Manager) initChannels() error {
 			logger.InfoC("channels", "WebSocket channel enabled successfully")
 		}
 	}
-	
+
 	logger.InfoCF("channels", "Channel initialization completed", map[string]interface{}{
 		"enabled_channels": len(m.channels),
 	})
