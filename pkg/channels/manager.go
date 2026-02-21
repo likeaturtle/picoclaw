@@ -51,7 +51,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize Telegram channel")
 		telegram, err := NewTelegramChannel(m.config, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize Telegram channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize Telegram channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -64,7 +64,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize WhatsApp channel")
 		whatsapp, err := NewWhatsAppChannel(m.config.Channels.WhatsApp, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize WhatsApp channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize WhatsApp channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -77,7 +77,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize Feishu channel")
 		feishu, err := NewFeishuChannel(m.config.Channels.Feishu, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize Feishu channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize Feishu channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -90,7 +90,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize Discord channel")
 		discord, err := NewDiscordChannel(m.config.Channels.Discord, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize Discord channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize Discord channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -103,7 +103,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize MaixCam channel")
 		maixcam, err := NewMaixCamChannel(m.config.Channels.MaixCam, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize MaixCam channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize MaixCam channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -116,7 +116,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize QQ channel")
 		qq, err := NewQQChannel(m.config.Channels.QQ, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize QQ channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize QQ channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -129,7 +129,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize DingTalk channel")
 		dingtalk, err := NewDingTalkChannel(m.config.Channels.DingTalk, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize DingTalk channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize DingTalk channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -142,7 +142,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize Slack channel")
 		slackCh, err := NewSlackChannel(m.config.Channels.Slack, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize Slack channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize Slack channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -155,7 +155,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize LINE channel")
 		line, err := NewLINEChannel(m.config.Channels.LINE, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize LINE channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize LINE channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -168,7 +168,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize OneBot channel")
 		onebot, err := NewOneBotChannel(m.config.Channels.OneBot, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize OneBot channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize OneBot channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -181,7 +181,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize WeCom channel")
 		wecom, err := NewWeComBotChannel(m.config.Channels.WeCom, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize WeCom channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize WeCom channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -194,7 +194,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize WeCom App channel")
 		wecomApp, err := NewWeComAppChannel(m.config.Channels.WeComApp, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize WeCom App channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize WeCom App channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -207,7 +207,7 @@ func (m *Manager) initChannels() error {
 		logger.DebugC("channels", "Attempting to initialize WebSocket channel")
 		ws, err := websocket.NewChannel(m.config.Channels.WebSocket, m.bus)
 		if err != nil {
-			logger.ErrorCF("channels", "Failed to initialize WebSocket channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to initialize WebSocket channel", map[string]any{
 				"error": err.Error(),
 			})
 		} else {
@@ -216,7 +216,7 @@ func (m *Manager) initChannels() error {
 		}
 	}
 
-	logger.InfoCF("channels", "Channel initialization completed", map[string]interface{}{
+	logger.InfoCF("channels", "Channel initialization completed", map[string]any{
 		"enabled_channels": len(m.channels),
 	})
 
@@ -240,11 +240,11 @@ func (m *Manager) StartAll(ctx context.Context) error {
 	go m.dispatchOutbound(dispatchCtx)
 
 	for name, channel := range m.channels {
-		logger.InfoCF("channels", "Starting channel", map[string]interface{}{
+		logger.InfoCF("channels", "Starting channel", map[string]any{
 			"channel": name,
 		})
 		if err := channel.Start(ctx); err != nil {
-			logger.ErrorCF("channels", "Failed to start channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Failed to start channel", map[string]any{
 				"channel": name,
 				"error":   err.Error(),
 			})
@@ -267,11 +267,11 @@ func (m *Manager) StopAll(ctx context.Context) error {
 	}
 
 	for name, channel := range m.channels {
-		logger.InfoCF("channels", "Stopping channel", map[string]interface{}{
+		logger.InfoCF("channels", "Stopping channel", map[string]any{
 			"channel": name,
 		})
 		if err := channel.Stop(ctx); err != nil {
-			logger.ErrorCF("channels", "Error stopping channel", map[string]interface{}{
+			logger.ErrorCF("channels", "Error stopping channel", map[string]any{
 				"channel": name,
 				"error":   err.Error(),
 			})
@@ -306,14 +306,14 @@ func (m *Manager) dispatchOutbound(ctx context.Context) {
 			m.mu.RUnlock()
 
 			if !exists {
-				logger.WarnCF("channels", "Unknown channel for outbound message", map[string]interface{}{
+				logger.WarnCF("channels", "Unknown channel for outbound message", map[string]any{
 					"channel": msg.Channel,
 				})
 				continue
 			}
 
 			if err := channel.Send(ctx, msg); err != nil {
-				logger.ErrorCF("channels", "Error sending message to channel", map[string]interface{}{
+				logger.ErrorCF("channels", "Error sending message to channel", map[string]any{
 					"channel": msg.Channel,
 					"error":   err.Error(),
 				})
@@ -329,13 +329,13 @@ func (m *Manager) GetChannel(name string) (Channel, bool) {
 	return channel, ok
 }
 
-func (m *Manager) GetStatus() map[string]interface{} {
+func (m *Manager) GetStatus() map[string]any {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
 
-	status := make(map[string]interface{})
+	status := make(map[string]any)
 	for name, channel := range m.channels {
-		status[name] = map[string]interface{}{
+		status[name] = map[string]any{
 			"enabled": true,
 			"running": channel.IsRunning(),
 		}
